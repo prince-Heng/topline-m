@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <van-nav-bar title="登陆"/>
+    <van-nav-bar title="登陆" />
     <van-cell-group>
       <van-field
         v-model="user.mobile"
@@ -10,9 +10,15 @@
         label="手机号"
         left-icon="phone-circle"
       />
-      <van-field  v-model="user.code" label="验证码"  left-icon="more" placeholder="请输入验证码" required >
-        <van-count-down v-if="isCountDownShow" slot="button" :time="1000*60"  format="ss 秒" />
-        <van-button v-else slot="button" size="small" @click="isCountDownHide" type="primary">发送验证码</van-button>
+      <van-field v-model="user.code" label="验证码" left-icon="more" placeholder="请输入验证码" required>
+        <van-count-down
+          v-if="isCountDownShow"
+          slot="button"
+          :time="1000*60"
+          format="ss 秒"
+          @finish="isCountDownShow=false"
+        />
+        <van-button v-else slot="button" size="small" @click="getCode" type="primary">发送验证码</van-button>
       </van-field>
     </van-cell-group>
     <div class="btn-wrap">
@@ -22,7 +28,7 @@
 </template>
 
 <script>
-import { login } from '@/api/user'
+import { login, getVerification } from '@/api/user'
 export default {
   name: 'LoginPage',
   data () {
@@ -59,19 +65,34 @@ export default {
         this.$toast.fail('登陆失败')
       }
     },
-    isCountDownHide () {
-      this.isCountDownShow = true
+    // 发送验证码
+    async getCode () {
+      // 1.获取手机号
+      const { mobile } = this.user
+      // 2.验证手机号是否有效
+
+      // 3.发送请求
+      try {
+        // 显示倒计时组件
+        this.isCountDownShow = true
+        await getVerification(mobile)
+      } catch (err) {
+        console.log(err)
+        this.$toast('发送失败')
+        // 发送失败时关闭倒计时
+        this.isCountDownShow = false
+      }
     }
   }
 }
 </script>
 
 <style scoped lang='less'>
-.btn-wrap{
-padding: 27px 16px;
-.van-button{
-  width: 100%;
-  background-color: #6db4fb;
-}
+.btn-wrap {
+  padding: 27px 16px;
+  .van-button {
+    width: 100%;
+    background-color: #6db4fb;
+  }
 }
 </style>

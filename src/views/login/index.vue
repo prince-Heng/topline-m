@@ -11,7 +11,8 @@
         left-icon="phone-circle"
       />
       <van-field  v-model="user.code" label="验证码"  left-icon="more" placeholder="请输入验证码" required >
-        <van-button slot="button" size="small" type="primary">发送验证码</van-button>
+        <van-count-down v-if="isCountDownShow" slot="button" :time="1000*60"  format="ss 秒" />
+        <van-button v-else slot="button" size="small" @click="isCountDownHide" type="primary">发送验证码</van-button>
       </van-field>
     </van-cell-group>
     <div class="btn-wrap">
@@ -29,7 +30,8 @@ export default {
       user: {
         mobile: '',
         code: ''
-      }
+      },
+      isCountDownShow: false
     }
   },
   methods: {
@@ -54,8 +56,11 @@ export default {
       } catch (err) {
         console.log('登陆失败')
         // 失败提示
-        this.$toast.fall('登陆失败')
+        this.$toast.fail('登陆失败')
       }
+    },
+    isCountDownHide () {
+      this.isCountDownShow = true
     }
   }
 }

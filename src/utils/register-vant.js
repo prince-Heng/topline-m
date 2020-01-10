@@ -2,7 +2,14 @@
 import Vue from 'vue'
 
 // 注册vant组件
-import { Button, Cell, CellGroup, NavBar, Field, Toast } from 'vant'
+import {
+  Button,
+  Cell,
+  CellGroup,
+  NavBar,
+  Field,
+  Toast,
+  CountDown } from 'vant'
 
 // 使用vant
 
@@ -12,3 +19,4 @@ Vue.use(Button)
   .use(NavBar)
   .use(Field)
   .use(Toast)
+  .use(CountDown)

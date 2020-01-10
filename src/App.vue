@@ -2,15 +2,20 @@
   <div id="app">
     <!-- 根路由出口 -->
     <router-view></router-view>
+    <div></div>
   </div>
 </template>
 
 <script>
 export default {
- name: 'App'
+  name: 'App'
 }
 </script>
 
-<style>
+<style lang='less' scoped>
 
+// @import url('./style/variables.less');
+// .title{
+//   color: @color-primary;
+// }
 </style>

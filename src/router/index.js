@@ -1,10 +1,17 @@
-import Vue from "vue"
-import VueRouter from "vue-router"
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
 // 配置路由表
-const routes = []
+const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    //  @是是如此、目录的别名，这是vue CLI项目中特殊提供的
+    component: () => import('@/views/login')
+  }
+]
 
 const router = new VueRouter({
   routes

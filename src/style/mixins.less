@@ -1,0 +1,9 @@
+// 公共的mixins（那里使用那里加载）
+.bordered{
+    border-top:dotted 1px black;
+    border-bottom:solid 2px black;
+}
+#menu a{
+    color:red;
+    .bordered();
+}

@@ -9,7 +9,10 @@ import {
   NavBar,
   Field,
   Toast,
-  CountDown } from 'vant'
+  CountDown,
+  Tabbar,
+  TabbarItem
+} from 'vant'
 
 // 使用vant
 
@@ -20,3 +23,5 @@ Vue.use(Button)
   .use(Field)
   .use(Toast)
   .use(CountDown)
+  .use(Tabbar)
+  .use(TabbarItem)

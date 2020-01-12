@@ -12,6 +12,9 @@ import './style/index.less'
 // 注册rem适配插件（postcss-pxtorem）
 import 'amfe-flexible'
 
+// 加载表单验证插件初始化配置
+import './utils/validation'
+
 Vue.config.productionTip = false
 
 new Vue({
